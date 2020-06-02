@@ -5,6 +5,8 @@ elastic_cerebro_version: 0.8.2
 elastic_cerebro_port: 9002
 elastic_cerebro_listen_host: 0.0.0.0
 
+cerebro_user: "{{ lookup('env','USER') }}"
+cerebro_group: "{{ lookup('env','GROUP') }}"
 
 elasticsearch_monitoring_enabled: False
 

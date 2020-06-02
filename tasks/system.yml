@@ -11,10 +11,20 @@
     dest: /opt/cerebro-{{elastic_cerebro_version}}.tgz
     mode: 0740
 
+- name: Pid file
+  file:
+    path: /var/run/cerebro/
+    state: directory
+    owner: "{{ cerebro_user }}"
+    group: "{{ cerebro_group }}"
+    mode: '755'
+
 - name: Create program folder
   file:
     path: "/opt/cerebro-{{elastic_cerebro_version}}"
     state: directory
+    owner: "{{ cerebro_user }}"
+    group: "{{ cerebro_group }}"
   notify:
     - restart elastic-cerebro
 
@@ -23,6 +33,8 @@
     remote_src: yes
     src: "/opt/cerebro-{{elastic_cerebro_version}}.tgz"
     dest: "/opt/"
+    owner: "{{ cerebro_user }}"
+    group: "{{ cerebro_group }}"
   notify:
     - restart elastic-cerebro
 
